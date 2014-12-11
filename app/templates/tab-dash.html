@@ -1,0 +1,21 @@
+<ion-view title="পাসপোর্ট চেক">
+  <ion-content class="center padding">
+  	<div class="card">
+	  <div class="item item-text-wrap result">
+	    {{ showResult }}
+	  </div>
+	</div>
+    <button ng-click="getStatus()" class="button button-block button-positive">
+    	<i class="icon {{ buttonIcon }}"></i>
+	  	{{ buttonText }}
+	</button>
+
+	<a
+		href="tel:3279053273" 
+		class="button button-block button-energized" 
+		ng-show="showCallButton">
+		<i class="icon ion-android-call"></i>
+		হোলারে জিজ্ঞান!!
+	</a>
+  </ion-content>
+</ion-view>
