@@ -1,7 +1,8 @@
 'use strict';
 angular.module('Ministero.controllers', [])
 
-.controller('DashCtrl', ['$scope', 'Status', function($scope, Status) {
+.controller('DashCtrl', ['$scope', 'Status', '$cordovaGeolocation',
+function($scope, Status, $cordovaGeolocation) {
 	$scope.gettingStatus = false;
 	$scope.currentStatus = 'notFetched';
 	$scope.showResult = null;
@@ -55,7 +56,16 @@ angular.module('Ministero.controllers', [])
 		$scope.buttonText = 'কি অবস্থা?';
 	});
 
-	
+	$cordovaGeolocation
+		.getCurrentPosition()
+		.then(function (position) {
+			var lat  = position.coords.latitude;
+			var long = position.coords.longitude;
+
+			console.log(lat, long);
+		}, function(err) {
+			console.log(err);
+		});
 }])
 
 .controller('FriendsCtrl', function($scope, Friends) {
