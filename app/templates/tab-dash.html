@@ -1,5 +1,11 @@
 <ion-view title="পাসপোর্ট চেক">
   <ion-content class="center padding">
+    <div class="card" ng-if="currentStatusText">
+	  <div class="item item-text-wrap result">
+	    <h2>{{ currentStatusText }}</h2>
+	  </div>
+	</div>
+  	
   	<div class="card">
 	  <div class="item item-text-wrap result">
 	    {{ showResult }}

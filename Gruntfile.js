@@ -49,7 +49,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://hidden-mesa-3376.herokuapp.com/'
+            apiEndpoint: 'http://abbutracker.herokuapp.com/'
           }
         }
       }

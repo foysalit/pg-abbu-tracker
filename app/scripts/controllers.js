@@ -17,18 +17,24 @@ function($scope, Status, $cordovaGeolocation) {
 	};
 
 	$scope.getStatus = function () {
+		if ($scope.gettingStatus)
+			return;
+
 		$scope.gettingStatus = true;
 
 		Status.get().success(function (res) {
-			if (angular.isUndefined(res.result)) {
+			if (angular.isUndefined(res.status)) {
 				$scope.currentStatus = 'none';
+				$scope.currentStatusText = null;
 				return;
 			}
 
-			$scope.currentStatus = res.result;
+			$scope.currentStatus = res.status;
+			$scope.currentStatusText = res.text;
 		}).error(function (err) {
 			console.log(err);
 			$scope.currentStatus = 'none';
+			$scope.currentStatusText = null;
 		}).finally(function () {
 			$scope.gettingStatus = false;
 		});
