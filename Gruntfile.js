@@ -41,8 +41,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://localhost:3000/'
-            //apiEndpoint: 'http://abbutracker.herokuapp.com/'
+            //apiEndpoint: 'http://localhost:3000/'
+            apiEndpoint: 'http://abbutracker.herokuapp.com/'
           }
         }
       },
