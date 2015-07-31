@@ -13,11 +13,12 @@ function($scope, $state, Status, $cordovaGeolocation, Credentials) {
 	$scope.buttonIcon = null;
 
 	var possibleResults = {
-		'notFetched': 'কিচ্ছু খুঁজি হাই না কিল্লাই। বাটনে গুতান!!',
-		'fetching'	: 'খাড়াই থান, লড়িয়েন না!',
-		'evaluation': 'কাম ছইলতেছে!',
-		'done'		: 'কাম হই গেছে মিষ্টি খাবান !',
-		'none'		: 'সমইস্যা হই গেলো!'
+		'notFetched'	: 'কিচ্ছু খুঁজি হাই না কিল্লাই। বাটনে গুতান!!',
+		'fetching'		: 'খাড়াই থান, লড়িয়েন না!',
+		'evaluation'	: 'কাম ছইলতেছে!',
+		'initialized' 	: 'কাম শুরু হই গেছে',
+		'done'			: 'কাম হই গেছে মিষ্টি খাবান !',
+		'none'			: 'সমইস্যা হই গেলো!'
 	};
 
 	$scope.getStatus = function () {
