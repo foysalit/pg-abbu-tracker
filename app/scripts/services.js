@@ -1,35 +1,38 @@
 'use strict';
 angular.module('Ministero.services', [])
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
+.factory('Status', ['$http', 'ENV', 'Credentials', function ($http, ENV, Credentials) {
+	return {
+		get: function () {
+			return $http.get(ENV.apiEndpoint, {params: Credentials.get()});
+		}
+	};
+}])
 
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
+.factory('Credentials', ['localStorageService', function (storage) {
+	return {
+		set: function (credentials) {
+			if (credentials.username)
+				storage.set('username', credentials.username);
+			if (credentials.password)
+				storage.set('password', credentials.password);
+		},
+		get: function () {
+			if (!this.isSet())
+				return {};
 
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  };
-})
-
-.factory('Status', ['$http', 'ENV', function ($http, ENV) {
-  return {
-    get: function () {
-      return $http.get(ENV.apiEndpoint);
-    }
-  };
-}]);
+			return {
+				username: storage.get('username'),
+				password: storage.get('password'),
+			};
+		},
+		isSet: function () {
+			return (storage.get('username') && storage.get('password'));
+		},
+		clear: function () {
+			storage.remove('username');
+			storage.remove('password');
+		}
+	};
+}])
+;

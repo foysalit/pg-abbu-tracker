@@ -1,8 +1,12 @@
 'use strict';
 angular.module('Ministero.controllers', [])
 
-.controller('DashCtrl', ['$scope', 'Status', '$cordovaGeolocation',
-function($scope, Status, $cordovaGeolocation) {
+.controller('DashCtrl', ['$scope', '$state', 'Status', '$cordovaGeolocation', 'Credentials',
+function($scope, $state, Status, $cordovaGeolocation, Credentials) {
+	// console.log(Credentials);
+	if (!Credentials.isSet())
+		return $state.go('tab.settings');
+
 	$scope.gettingStatus = false;
 	$scope.currentStatus = 'notFetched';
 	$scope.showResult = null;
@@ -74,14 +78,12 @@ function($scope, Status, $cordovaGeolocation) {
 		});
 }])
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+.controller('SettingsCtrl', ['$scope', '$state', 'Credentials',
+function($scope, $state, Credentials) {
+	$scope.credentials = Credentials.get();
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('AccountCtrl', function($scope) {
-	$scope.test = 'test';
-});
+	$scope.save = function () {
+		Credentials.set($scope.credentials);
+		$state.go('tab.dash');
+	};
+}]);

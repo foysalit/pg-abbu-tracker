@@ -6,7 +6,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('Ministero', ['ionic', 'config', 'ngCordova', 'Ministero.controllers', 'Ministero.services'])
+angular.module('Ministero', ['ionic', 'config', 'ngCordova', 'Ministero.controllers', 'Ministero.services', 'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,6 +20,10 @@ angular.module('Ministero', ['ionic', 'config', 'ngCordova', 'Ministero.controll
       StatusBar.styleDefault();
     }
   });
+})
+
+.config(function (localStorageServiceProvider) {
+  localStorageServiceProvider.setPrefix('ministero');
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -45,6 +49,15 @@ angular.module('Ministero', ['ionic', 'config', 'ngCordova', 'Ministero.controll
         'tab-dash': {
           templateUrl: 'templates/tab-dash.html',
           controller: 'DashCtrl'
+        }
+      }
+    })
+    .state('tab.settings', {
+      url: '/settings',
+      views: {
+        'tab-settings': {
+          templateUrl: 'templates/tab-settings.html',
+          controller: 'SettingsCtrl'
         }
       }
     });
