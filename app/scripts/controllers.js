@@ -15,7 +15,8 @@ function($scope, $state, Status, $cordovaGeolocation, Credentials) {
 	var possibleResults = {
 		'notFetched'	: 'কিচ্ছু খুঁজি হাই না কিল্লাই। বাটনে গুতান!!',
 		'fetching'		: 'খাড়াই থান, লড়িয়েন না!',
-		'evaluation'	: 'কাম ছইলতেছে!',
+		'evaluation_running'	: 'কাম ছইলতেছে!',
+		'evaluation_finished'	: 'শেষ পর্যায়!',
 		'initialized' 	: 'কাম শুরু হই গেছে',
 		'done'			: 'কাম হই গেছে মিষ্টি খাবান !',
 		'none'			: 'সমইস্যা হই গেলো!'
